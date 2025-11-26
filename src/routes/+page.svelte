@@ -3,14 +3,14 @@
 	let progress3 = $state(0);
 
 	// setInterval((uid = Math.floor(Math.random() * 100)), 1000);
-	const list = ['moin', 'hello', ':)', 'search for anything'];
+	const list = ['hello', ':)', 'search for anything'];
 
 	function resolveAfter2Seconds() {
 		return new Promise((resolve) => {
 			setTimeout(() => {
 				//resolve(Math.floor(Math.random() * 100));
 				resolve(list[Math.floor(Math.random() * list.length)]);
-			}, 100);
+			}, 1500);
 		});
 	}
 	function progressbar() {
@@ -18,7 +18,7 @@
 		return new Promise((resolve) => {
 			setTimeout(() => {
 				resolve(Math.floor(Math.random() * 100));
-			}, 100);
+			}, 1500);
 		});
 	}
 
@@ -48,9 +48,10 @@
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
+
 <main id="MAIN_CONTAINER">
 	<img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Compactcassette.jpg" alt="bruh" />
-	<p>hactuss</p>
+	<a href="https://hactuss.vercel.app/" >hactuss</a>
 	<h1>{uid}</h1>
 	<div id="SEARCH_BOX">
 		<input type="text" contextmenu="hello" bind:value={input} />
@@ -60,12 +61,13 @@
 	{#await resolveAfter2Seconds()}
 		<p>waiting...</p>
 	{:then uid}
-		<p>here you go, uid is {uid}</p>
+		<p>awaited svelte snipped, welcome</p>
 	{/await}
 
 	<div id="loadingbar">
 		<div id="progress" style:width={progress3 + '%'}>{progress3}%</div>
 	</div>
+	<p>look @ console</p>
 </main>
 
 <style>
