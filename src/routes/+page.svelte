@@ -51,9 +51,19 @@
   function presssearch() {
     console.log(input);
   }
+  let posx = $state(0);
+  let posy = $state(0);
+  function mouseposition() {
+    return ((posx = mouse.x), (posy = mouse.y));
+  }
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
+<svelte:body
+  onmouseenter={mouseposition}
+  onmousemove={mouseposition}
+  onmouseleave={mouseposition}
+/>
 
 <main id="MAIN_CONTAINER">
   <img
