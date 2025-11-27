@@ -1,11 +1,19 @@
 <script>
+  import Loadingbar from "$lib/components/loadingbar.svelte";
   let uid = $state();
+  let progress2 = 0;
   let progress3 = $state(0);
+  const list = ["hello", ":)", "search for anything"];
+  let input = $state("");
+  let posx = $state(0);
+  let posy = $state(0);
+  let nf = ["this will hurt (ultrakill)", "bruh"];
+  let ths = "";
+  //let der = $derived(input + " ");
 
   // setInterval((uid = Math.floor(Math.random() * 100)), 1000);
-  const list = ["hello", ":)", "search for anything"];
 
-  function resolveAfter2Seconds() {
+  export function resolveAfter2Seconds() {
     return new Promise((resolve) => {
       setTimeout(() => {
         //resolve(Math.floor(Math.random() * 100));
@@ -14,14 +22,12 @@
     });
   }
   function progressbar() {
-    let progress2 = 0;
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(Math.floor(Math.random() * 100));
       }, 1500);
     });
   }
-
   async function asyncCall() {
     const result = await resolveAfter2Seconds();
     progress3 = await progressbar();
@@ -30,40 +36,19 @@
     progress3 = 100;
     uid = result;
   }
-  function capped() {
-    asyncCall();
-  }
-  capped();
-
-  // search inout stuff
-
-  let input = $state("");
-  //let der = $derived(input + " ");
-  let nf = ["this will hurt (ultrakill)", "bruh"];
-  let ths = "";
-
   function handleKeydown(event) {
     if (event.key == "Enter") {
-      console.log(input);
+      $inspect(input);
     }
   }
-
   function presssearch() {
-    console.log(input);
+    $inspect(input);
   }
-  let posx = $state(0);
-  let posy = $state(0);
-  function mouseposition() {
-    return ((posx = mouse.x), (posy = mouse.y));
-  }
+
+  asyncCall();
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
-<svelte:body
-  onmouseenter={mouseposition}
-  onmousemove={mouseposition}
-  onmouseleave={mouseposition}
-/>
 
 <main id="MAIN_CONTAINER">
   <img
@@ -85,11 +70,11 @@
     <p>awaited svelte snipped, welcome</p>
   {/await}
 
-  <div id="loadingbar">
-    <div id="progress" style:width={progress3 + "%"}>{progress3}%</div>
-  </div>
+  <Loadingbar number={progress3} />
+
   <p>look @ console</p>
   <main>{input.length}</main>
+
   <div id="list">
     <div id="each">
       {#each input as msg}
