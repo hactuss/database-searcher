@@ -1,5 +1,5 @@
 <script>
-  import Loadingbar from "$lib/components/loadingbar.svelte";
+  import Vloadingbar from "$lib/components/vloadingbar.svelte";
   let uid = $state();
   let progress2 = 0;
   let progress3 = $state(0);
@@ -44,17 +44,19 @@
   function presssearch() {
     $inspect(input);
   }
-
   asyncCall();
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
 
 <main id="MAIN_CONTAINER">
-  <img
-    src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Compactcassette.jpg"
-    alt="bruh"
-  />
+  <div style:display="flex">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Compactcassette.jpg"
+      alt="bruh"
+    />
+    <Vloadingbar number={progress3} />
+  </div>
   <a href="https://hactuss.vercel.app/">hactuss</a>
   <h1>{uid}</h1>
 
@@ -69,8 +71,6 @@
   {:then uid}
     <p>awaited svelte snipped, welcome</p>
   {/await}
-
-  <Loadingbar number={progress3} />
 
   <p>look @ console</p>
   <main>{input.length}</main>
@@ -94,15 +94,6 @@
   }
   #SEARCH_BOX {
     background-color: rgba(0 0 200 0.5);
-  }
-  #loadingbar {
-    height: 1rem;
-    width: 100px;
-    background-color: red;
-  }
-  #progress {
-    height: 1rem;
-    background-color: blue;
   }
   #list {
     border: "solid white 1px";
