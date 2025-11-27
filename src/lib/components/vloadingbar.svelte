@@ -2,11 +2,20 @@
   let props = $props();
 </script>
 
-<main>
-  <div style:height="{props.number}%"><p>{props.number}%</p></div>
-</main>
+<header>
+  <main>
+    <div style:height="{props.number}%"></div>
+  </main>
+  <p>{props.number}%</p>
+</header>
 
 <style>
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   main {
     border: solid 1px white;
     height: 250px;

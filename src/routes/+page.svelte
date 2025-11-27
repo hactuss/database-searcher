@@ -59,7 +59,7 @@
   </div>
   <a href="https://hactuss.vercel.app/">hactuss</a>
   <h1>{uid}</h1>
-
+  <a href="/api/posts">api</a>
   <div id="SEARCH_BOX">
     <input type="text" contextmenu="hello" bind:value={input} />
     <button onclick={presssearch}>Search</button>
